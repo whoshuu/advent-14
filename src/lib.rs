@@ -28,3 +28,21 @@ fn comet_distance() {
 fn dancer_distance() {
     assert_eq!(1056, total_distance(16, 11, 162, 1000));
 }
+
+#[test]
+fn comet_parse() {
+    let input = "Comet can fly 14 km/s for 10 seconds, but then must rest for 127 seconds.".to_string();
+    let (speed, fly, rest) = parse_string(&input);
+    assert_eq!(14, speed);
+    assert_eq!(10, fly);
+    assert_eq!(127, rest);
+}
+
+#[test]
+fn dancer_parse() {
+    let input = "Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.".to_string();
+    let (speed, fly, rest) = parse_string(&input);
+    assert_eq!(16, speed);
+    assert_eq!(11, fly);
+    assert_eq!(162, rest);
+}
