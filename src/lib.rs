@@ -19,6 +19,22 @@ pub fn total_distance(speed: u32, fly: u32, rest: u32, seconds: u32) -> u32 {
     distance
 }
 
+pub fn parse_string(s: &String) -> (u32, u32, u32) {
+    let can_fly = s.find("can fly").expect("Uh oh!") + 8;
+    let mut km_s = s.find("km/s").expect("Uh oh!") - 1;
+    let speed = s[can_fly..km_s].parse::<u32>().expect("Error parsing speed");
+
+    km_s = s.find("km/s").expect("Uh oh!") + 9;
+    let first_seconds = s.find("seconds,").expect("Uh oh!") - 1;
+    let fly = s[km_s..first_seconds].parse::<u32>().expect("Error parsing fly time");
+
+    let rest_for = s.find("rest for").expect("Uh oh!") + 9;
+    let second_seconds = s.find("seconds.").expect("Uh oh!") - 1;
+    let rest = s[rest_for..second_seconds].parse::<u32>().expect("Error parsing rest time");
+
+    (speed, fly, rest)
+}
+
 #[test]
 fn comet_distance() {
     assert_eq!(1120, total_distance(14, 10, 127, 1000));
