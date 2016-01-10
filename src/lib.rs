@@ -1,18 +1,18 @@
-pub fn total_distance(speed: u32, sprint: u32, rest: u32, seconds: u32) -> u32 {
-    let mut time_to_sprint = sprint;
+pub fn total_distance(speed: u32, fly: u32, rest: u32, seconds: u32) -> u32 {
+    let mut time_to_fly = fly;
     let mut time_to_rest = rest;
     let mut distance = 0;
 
     for _ in 0..seconds {
-        if time_to_sprint > 0 {
+        if time_to_fly > 0 {
             distance += speed;
-            time_to_sprint -= 1;
+            time_to_fly -= 1;
             time_to_rest = rest;
         } else {
             if time_to_rest > 0 {
                 time_to_rest -= 1;
             } else {
-                time_to_sprint = sprint;
+                time_to_fly = fly;
             }
         }
     }
